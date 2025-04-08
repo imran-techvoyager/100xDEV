@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TODO-using DOM</title>
+    <style>
+
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div>
+            <h1>TODO APP</h1>
+        </div>
+        <input type="text" id="title" placeholder="title">
+        <br></br>
+        <input type="text" id="discription" placeholder="discription">
+        <br></br>
+        <div id="new">
+
+        </div>
+    </div>
+
+    <script>
+
+        function addChild(title, discription, id) {
+            const child = document.createElement("div");
+            const grandChildOne = document.createElement("div")
+            grandChildOne.innerHTML = title;
+            const grandChildTwo = document.createElement("div")
+            grandChildTwo.innerHTML = discription;
+            const grandChildThree = document.createElement("button")
+            grandChildThree.innerHTML = "mark as done";
+            grandChildThree.setAttribute("onClick", `markAsDone(${id})`);
+            child.appendChild(grandChildOne);
+            child.appendChild(grandChildTwo);
+            child.appendChild(grandChildThree);
+            child.setAttribute("id", id);
+            return child;
+        }
+        // State will always be an array
+        // Every element of state would have a title, description and id
+        //
+        //
+        function updateDomAccToState(state) {
+            const parent = document.getElementById("new");
+            parent.innerHTML = "";
+            for (let i = 0; i < state.length; i++) {
+                const child = addChild(state[i].title, state[i].description, state[i].id);
+                parent.appendChild(child);
+            }
+        }
+        window.setInterval(async function () {
+            const res = await fetch("https://sum-server.100xdevs.com/todos")
+            const json = await res.json();
+            updateDomAccToState(json.todos)
+        }, 5000)
+    </script>
+
+</body>
+
+</html>

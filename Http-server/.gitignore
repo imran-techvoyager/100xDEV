@@ -1,0 +1,18 @@
+# Ignore other large files (e.g., media files)
+*.zip
+*.tar
+*.iso
+*.mp4
+*.mp3
+
+# Ignore temporary files or OS-specific files
+.DS_Store
+Thumbs.db
+
+# Ignore logs
+*.log
+
+# Ignore temporary development files
+node_modules/
+dist/
+.env

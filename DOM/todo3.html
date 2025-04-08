@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TODO-using DOM</title>
+    <style>
+          
+    </style>
+</head>
+<body>
+    <div class="container"> 
+            <div>
+                <h1>TODO APP</h1>
+            </div>
+            <input type="text" id="title" placeholder="title">
+            <br></br>
+            <input type="text" id="discription" placeholder="discription">
+            <br></br>
+            <button onclick="addtodo()">Add Todo</button>
+            <br></br>
+            <div id="new">
+                     
+            </div>
+    </div>
+
+    <script>
+             function markAsDone(id){
+                const done = document.getElementById(id)
+                done.children[2].innerHTML = "Done!"
+             }
+
+             function addChild(title, discription, id){
+                const child = document.createElement("div");
+                const grandChildOne = document.createElement("div")
+                grandChildOne.innerHTML = title;
+                const grandChildTwo = document.createElement("div")
+                grandChildTwo.innerHTML = discription;
+                const grandChildThree = document.createElement("button")
+                grandChildThree.innerHTML = "mark as done";
+                grandChildThree.setAttribute("onClick", `markAsDone(${id})`);
+                child.appendChild(grandChildOne);
+                child.appendChild(grandChildTwo);
+                child.appendChild(grandChildThree);
+                child.setAttribute("id", id);
+                return child;
+             }
+              let globalId = 1;
+             function addtodo(){
+                const title = document.getElementById("title").value;
+                const discription = document.getElementById("discription").value;
+                const parent = document.getElementById("new");
+                parent.appendChild(addChild(title, discription, globalId++))
+             }
+    </script>
+
+</body>
+</html>

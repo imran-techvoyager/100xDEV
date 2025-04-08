@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TODO-using DOM</title>
+    <style>
+          .container{
+            height: 500px;
+            width: 300px;
+            border: 2px solid black;
+            box-shadow: 1px 8px 15px 1px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            gap: 20px;
+            overflow-y: scroll;
+            border-radius: 5px;          
+          }
+    </style>
+</head>
+<body>
+    <div class="container"> 
+            <div>
+                <h1>TODO APP</h1>
+            </div>
+            <input type="text" id="title" placeholder="title">
+            <input type="text" id="discription" placeholder="discription">
+            <button onclick="addtodo()">Add Todo</button>
+            <div id="new">
+                     
+            </div>
+    </div>
+
+    <script>
+             function addtodo(){
+                const title = document.getElementById("title").value;
+                const discription = document.getElementById("discription").value;
+                const outerDiv = document.createElement("div");
+                outerDiv.innerHTML = title;
+                document.getElementById("new").appendChild(outerDiv);     
+             }
+    </script>
+
+</body>
+</html>
